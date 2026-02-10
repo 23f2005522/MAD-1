@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block title %}Add Product{% endblock %} {% block
+content%}
+
+<div class="container p-3 justify-content-center">
+  <h1 class="text-info text-center">Add Product</h1>
+  <form
+    method="POST"
+    action="{{ url_for('add_product.add_product') }}"
+    enctype="multipart/form-data"
+  >
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        id="productName"
+        aria-describedby="productHelp"
+        placeholder="Enter product name"
+      />
+      <div id="productHelp" class="form-text">Add Your Product Here.</div>
+    </div>
+    <div class="mb-3">
+      <label for="productDescription" class="form-label">Description</label>
+      <textarea
+        name="description"
+        class="form-control"
+        id="productDescription"
+        placeholder="Enter product description"
+        style="height: 10rem"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="productPrice" class="form-label">Price</label>
+      <input
+        type="text"
+        name="price"
+        class="form-control"
+        id="productPrice"
+        placeholder="Enter product price"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="productCategory" class="form-label">Category</label>
+      <select class="form-select" id="productCategory" name="category_id" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="productDocument" class="form-label">Product Document</label>
+      <input
+        type="file"
+        name="document"
+        class="form-control"
+        accept=".pdf"
+        id="productDocument"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

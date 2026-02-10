@@ -8,7 +8,7 @@ auth_bp = Blueprint("auth" , __name__)
 @auth_bp.route("/login", methods=["GET" , "POST"])
 def login():
     if request.method == "GET":
-        # if already logged in Reqirect to dashboard
+        # if already logged in Redirect to dashboard
         if "user_email" in session:
             print("aa")
             return render_template("home.html")
@@ -54,7 +54,7 @@ def login():
         
         
 @auth_bp.route("/logout" , methods=["GET"])
-def Logout(): 
+def logout(): 
     if "user_email" not in session:
         flash("You are not logged in!" , "error")
         return redirect(url_for("auth.login"))

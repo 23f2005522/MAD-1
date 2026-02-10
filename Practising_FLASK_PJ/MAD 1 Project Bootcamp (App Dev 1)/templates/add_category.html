@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+
+{% block title %}Add Category{% endblock %} 
+
+{% block content%}
+
+<div class="container p-3 justify-content-center">
+  <h1 class="text-info text-center">Add Category</h1>
+  <form method="POST" action="{{ url_for('add_category.add_category') }}">
+    <div class="mb-3">
+      <label for="categoryName" class="form-label">Category Name</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        id="categoryName"
+        aria-describedby="categoryHelp"
+        placeholder="Enter category name"
+      />
+      <div id="categoryHelp" class="form-text">
+        Add Your Category Here.
+      </div>
+    </div>
+    <div class="mb-3">
+        <label for="categoryDescription" class="form-label">Description</label>
+        <input type="text" name="description" class="form-control" id="categoryDescription"  placeholder="Enter category description"/>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary ">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -4,7 +4,8 @@ from config.config import Config
 from models.models import *
 from routes.auth_routes import auth_bp
 from routes.home_route import home_bp
-
+from routes.add_category import add_category_bp
+from routes.add_product import add_product_bp
 
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -55,7 +56,8 @@ with app.app_context():
 
 app.register_blueprint(home_bp)
 app.register_blueprint(auth_bp)
-
+app.register_blueprint(add_category_bp)
+app.register_blueprint(add_product_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)

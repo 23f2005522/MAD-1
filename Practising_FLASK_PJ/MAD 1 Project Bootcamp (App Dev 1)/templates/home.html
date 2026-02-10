@@ -3,7 +3,18 @@
 {% block content %}
 
 <div class="py-5 container">
-<h1>Welcome to the Grocery Store Home Page</h1>
+    {% if not session.get("user_email" , None) %}
+        <h1>
+            Login / Register to view your profile
+        </h1>
+    {% else %}
+            {% if 'store_manager' in session.get("user_role", []) %}
+                <h1>Welcome Store Manager {{ session.get("user_email") }}</h1>
+            {% elif 'customer' in session.get("user_role", []) %}
+                <h1>Welcome Customer {{ session.get("user_email") }}</h1>
+            {% endif %}
+    {% endif %}
+
 </div>
 
 {% endblock %}

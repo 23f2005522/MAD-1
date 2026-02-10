@@ -3,14 +3,74 @@
   <div class="container">
     <a class="navbar-brand fs-2" href="/">Grocery Store</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+        {% if session.get("user_email") %}
+        <!-- User is logged in -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+        </li>
+
+        <li class="nav-item">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Select Role
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+             {% if 'admin' in session.get("user_role", []) %}
+              <li><a class="dropdown-item" href="admin_dashboard.html">Admin Dashboard</a></li>
+              {% endif %}
+              {% if 'store_manager' in session.get("user_role", []) %}
+              <li><a class="dropdown-item" href="storemanager_dashboard.html">Store Manager Dashboard</a></li>
+              {% endif %}
+              {% if 'customer' in session.get("user_role", []) %}
+              <li><a class="dropdown-item" href="customer_dashboard.html">Customer Dashboard</a></li>
+              {% endif %}
+
+            </ul>
+          </div>
+        </li>
+
+        <!-- Add Category link for Admin -->
+        {% if 'admin' in session.get("user_role", []) %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-primary ms-2" href="{{ url_for('add_category.add_category') }}">Add Category</a>
+        </li>
+        {% endif %}
+
+        <!-- Add Product link for Store Manager -->
+        {% if 'store_manager' in session.get("user_role", []) %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-primary ms-2" href="{{ url_for('add_product.add_product') }}">Add Product</a>
+        </li>
+        {% endif %}
+
+
+
+        {% else %}
+        <!-- User is NOT logged in -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.Register') }}">Register</a>
+        </li>
+        {% endif %}
+
         
       </ul>
     </div>
