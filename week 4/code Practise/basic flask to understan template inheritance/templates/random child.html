@@ -5,7 +5,7 @@
 {% block content %}
 
 
-{{ super() }}
+
 <div class="container mt-4 bg-warning p-3 ">
   <h2>Random Child Page</h2>
   <p>This is a random child page extending the base template.</p>
@@ -16,3 +16,4 @@
 
 
 <!-- Without super(), when you override a block, you replace it completely.-->
+ <!-- super() allows a child block to include the contents of the parent block instead of completely replacing it. -->

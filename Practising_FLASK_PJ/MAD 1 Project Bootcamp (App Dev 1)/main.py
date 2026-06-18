@@ -1,4 +1,4 @@
-from flask import Flask, render_template , request
+from flask import Flask,
 from db.db import db
 from config.config import Config
 from models.models import *
@@ -11,7 +11,7 @@ from routes.add_product import add_product_bp
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
 app.config.from_object(Config)
-db.init_app(app)
+db.init_app(app) 
 
 
 with app.app_context():

@@ -24,13 +24,13 @@ def greet():
 
 
 # bindind multiple routes to the same function
-# @app.route('/welcome')
-# @app.route('/welcome2')
-# @app.route('/welcome3')
-# def welcome():
-#     return "<h1>Welcome to Flask!</h1>"
+@app.route('/welcome')
+@app.route('/welcome2')
+@app.route('/welcome3')
+def welcome():
+    return "<h1>Welcome to Flask!</h1>"
 
-
+ 
 
 
 
@@ -92,7 +92,7 @@ def form():
                 
                 
                 Examples from web development:
-                        1. Query parameters
+                        1. Query parameters : A query parameter is a key-value pair added to the end of a URL to pass information to a web server. Query parameters begin after a ? and multiple parameters are separated by &.
 
                         URL:
 
